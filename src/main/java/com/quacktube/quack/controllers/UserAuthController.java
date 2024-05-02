@@ -34,7 +34,7 @@ public class UserAuthController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO user){
         try {
             UsersModel existingUsername = usersRepository.findByUsername(user.getUsername());
-            UsersModel existingEmail = usersRepository.findByUsername(user.getEmail());
+            UsersModel existingEmail = usersRepository.findByEmail(user.getEmail());
 
             if (existingUsername != null || existingEmail != null) {
                 logger.warn("Username/Email '{}'/'{}' already exists", user.getUsername(),user.getEmail());

@@ -5,6 +5,7 @@ import com.quacktube.quack.dto.RegisterDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -18,8 +19,9 @@ import java.time.Instant;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Document(collection = "users")
 public class UsersModel {
 
@@ -36,7 +38,11 @@ public class UsersModel {
 
     @Size(max = 100)
     @NotBlank
-    String fullName;
+    String firstName;
+
+    @Size(max = 100)
+    @NotBlank
+    String lastName;
 
     @Size(max = 100)
     @NotBlank
@@ -59,7 +65,8 @@ public class UsersModel {
     public UsersModel(RegisterDTO user) {
         this.username = user.getUsername();
         this.email = user.getEmail();
-        this.fullName = user.getFullName();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
         this.coverImage = user.getCoverImage();
         this.password = user.getPassword();
         this.createdAt = Date.from(Instant.now());

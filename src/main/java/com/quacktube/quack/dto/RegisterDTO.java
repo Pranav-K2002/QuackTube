@@ -19,9 +19,13 @@ public class RegisterDTO {
     @NotNull(message = "Email is required")
     String email;
 
-    @Size(max = 100, message = "Full name must be less than or equal to 100 characters")
-    @NotNull(message = "Full name is required")
-    String fullName;
+    @Size(max = 100, message = "First name must be less than or equal to 100 characters")
+    @NotNull(message = "First name is required")
+    String firstName;
+
+    @Size(max = 100, message = "Last name must be less than or equal to 100 characters")
+    @NotNull(message = "Last name is required")
+    String lastName;
 
     @NotNull(message = "Cover image is required")
     String coverImage;

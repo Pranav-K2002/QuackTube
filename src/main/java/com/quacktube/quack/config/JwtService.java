@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cglib.core.internal.Function;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -19,8 +20,16 @@ public class JwtService {
     private long jwtExpiration;
 
     public String getEmail(String token) {
-        return null;
+        return extractClaim(token, Claims::getSubject);
     }
+
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+//    public String generateToken()
 
     private Claims extractAllClaims(String token) {
         return Jwts

@@ -31,7 +31,8 @@ public class RegisterUserServiceImpl implements RegisterUserService {
             userModel.setUsername(user.getUsername());
             userModel.setPassword(passwordEncoder.encode(user.getPassword()));
             userModel.setEmail(user.getEmail());
-            userModel.setFullName(user.getFullName());
+            userModel.setFirstName(user.getFirstName());
+            userModel.setLastName(user.getLastName());
             userModel.setCoverImage(user.getCoverImage());
             userModel.setCreatedAt(Date.from(Instant.now()));
 
